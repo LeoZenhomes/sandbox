@@ -1,5 +1,5 @@
 import { BrowserClient, Hub } from "@sentry/browser";
-import { BrowserTracing } from "@sentry/tracing";
+// import { BrowserTracing } from "@sentry/tracing";
 import {
   OPTIONS_BROWSER_SDK,
   OPTIONS_REACT_SDK,
