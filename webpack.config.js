@@ -87,6 +87,7 @@ module.exports = (env = {}, argv) => {
         "process.env.GIT_COMMIT_HASH": JSON.stringify(gitCommitHash),
       }),
 
+      // push releases incl. sourcemaps and git commits to Sentry
       new SentryCliPlugin({
         authToken:
           "288686163f564ca9878973e779b09c095188f0f3ec724c8abc17ac0732810652",
