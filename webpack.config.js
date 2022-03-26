@@ -29,12 +29,12 @@ module.exports = (webpackConfigEnv, argv) => {
       new SentryCliPlugin({
         authToken:
           "288686163f564ca9878973e779b09c095188f0f3ec724c8abc17ac0732810652",
-        dryRun: true, // process.env.NODE_ENV !== 'prod',
+        dryRun: false, // process.env.NODE_ENV !== 'prod',
         include: "./dist",
         org: "paul-kujawa",
         project: "webpack-playground",
         release: gitCommitHash,
-        setCommits: { auto: true },
+        // setCommits: { auto: true },
         urlPrefix: `~/paul-sentry-releases-poc/${gitCommitHashShortened}/`,
         // urlPrefix: `https://frontend-sspa-dev.storage.googleapis.com/shelf-usages/${gitCommitHash.substring(0, 8)}/`
       }),
