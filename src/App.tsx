@@ -1,10 +1,9 @@
-import { Form, Header } from "@app/components";
+import { Form, Header } from "./components";
 import { Box, Button } from "@material-ui/core";
-import { ErrorMonitorApp } from "./lib/error-monitor";
+import { ErrorMonitor } from "./lib";
 import React from "react";
-import ReactDOM from "react-dom";
 import ImageDogeUrl from "./assets/doge.jpg"; // includes domain and port
-import "./index.css";
+import "./App.css";
 
 import(/* webpackPreload: true */ "lodash");
 
@@ -31,7 +30,7 @@ export const App = () => {
           variant="outlined"
           color="secondary"
           onClick={() => {
-            ErrorMonitorApp.logException(new Error("some bug"));
+            ErrorMonitor.logException(new Error("some bug"));
           }}
         >
           Throw error
@@ -40,5 +39,3 @@ export const App = () => {
     </div>
   );
 };
-
-ReactDOM.render(<App />, document.getElementById("root"));
