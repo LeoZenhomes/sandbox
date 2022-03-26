@@ -97,6 +97,7 @@ module.exports = (env = {}, argv) => {
         project: "webpack-playground",
         release: gitCommitHash,
         setCommits: { auto: true },
+        // urlPrefix: `~/` matches `/foo.js` (default) and `~/js/` matches `/js/foo.js`. Also works for CDNs
       }),
 
       // visual representation of bundles and chunks.
