@@ -35,7 +35,7 @@ module.exports = (webpackConfigEnv, argv) => {
         project: "webpack-playground",
         release: gitCommitHash,
         // setCommits: { auto: true },
-        urlPrefix: `~/paul-sentry-releases-poc/${gitCommitHashShortened}/`,
+        urlPrefix: `~/paul-sentry-releases-poc/`,
         // urlPrefix: `https://frontend-sspa-dev.storage.googleapis.com/shelf-usages/${gitCommitHash.substring(0, 8)}/`
       }),
     ],
