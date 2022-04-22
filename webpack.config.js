@@ -13,12 +13,16 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  const gitCommitHash = new GitRevisionPlugin().commithash();
+  const gitCommitHash = "apr 22 - 3"; // new GitRevisionPlugin().commithash();
   const gitCommitHashShortened = gitCommitHash.substring(0, 8);
 
   return merge(defaultConfig, {
+    mode: "production",
     devServer: {
       https: true,
+    },
+    performance: {
+      hints: false,
     },
     devtool: "hidden-source-map",
     plugins: [

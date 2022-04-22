@@ -30,7 +30,7 @@ export const App = () => {
           variant="outlined"
           color="secondary"
           onClick={() => {
-            ErrorMonitor.logException(new Error("some bug"));
+            ErrorMonitor.logException(new Error("some bug " + Math.random()));
           }}
         >
           Throw error
