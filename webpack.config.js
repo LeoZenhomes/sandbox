@@ -13,7 +13,7 @@ module.exports = (env = {}, argv) => {
   const isProd = !isDev;
 
   // webpack plugin to get the latest git commit and version tag
-  const gitCommitHash = new GitRevisionPlugin().commithash();
+  const gitCommitHash = "24.05 18:40"; // new GitRevisionPlugin().commithash();
 
   return {
     mode: isProd ? "production" : "development",

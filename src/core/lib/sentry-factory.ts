@@ -1,4 +1,4 @@
-import { BrowserClient, Hub } from "@sentry/browser";
+import { BrowserClient, EventHint, Hub } from "@sentry/browser";
 import {
   OPTIONS_BROWSER_SDK,
   OPTIONS_REACT_SDK,
@@ -14,10 +14,10 @@ export const ErrorMonitorFactory = ({ dsn, release }: Params) => {
   const client = new BrowserClient({
     ...OPTIONS_BROWSER_SDK,
     ...OPTIONS_REACT_SDK,
-    attachStacktrace: true, // also attaches them to `messages`.
     dsn,
     environment: "production",
     release,
+    enabled: process.env.NODE_ENV === "production",
 
     // integrations: [new BrowserTracing()],
     // tracesSampleRate: 1.0,
@@ -31,7 +31,21 @@ export const ErrorMonitorFactory = ({ dsn, release }: Params) => {
   return {
     logException: (error: any) => {
       hub.run((currentHub) => {
-        currentHub.captureException(error);
+        const eventHint: EventHint = {};
+
+        // special handling for network errors
+        if (error.status && error.url) {
+          const { status, url, data } = error;
+
+          error = new Error(`HTTP ${status} - ${url}`);
+
+          eventHint.captureContext = {
+            fingerprint: [String(status), url],
+            contexts: data ? { "response body": data } : undefined,
+          };
+        }
+
+        currentHub.captureException(error, eventHint);
       });
     },
   };

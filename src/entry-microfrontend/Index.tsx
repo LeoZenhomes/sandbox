@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
-import { App } from "../core/App";
+import { Index } from "../core";
 import { ErrorMonitor } from "../core/lib";
 
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
-  rootComponent: App,
+  rootComponent: Index,
   errorBoundary: (err) => {
     ErrorMonitor.logException(err);
     return <div />;
